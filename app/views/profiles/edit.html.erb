@@ -1,0 +1,24 @@
+
+<%= form_for(@user, url: profile_path(@img, @name, @introduction)) do |f| %>
+
+  <div class="field">
+    <%= f.label :img ,"アイコン画像" %>
+    <%= f.file_field :img, autocomplete: "img" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name ,"名前" %>
+    <%= f.text_field :name, autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :introduction ,"自己紹介" %>
+    <%= f.text_field :introduction, autocomplete: "introduction" %>
+  </div> 
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
+<%= link_to "Back", :back %>

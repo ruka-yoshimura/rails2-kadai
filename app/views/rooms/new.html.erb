@@ -1,7 +1,9 @@
 <h2>新規登録</h2>
 
-<%= form_for(@room) do |f| %>
-<%# <%= form_with(@room, url: rooms_path(@room_name)) do |f| %>
+  <p><%= @room %></p>
+<%# <%= form_for(@room) do |f| %> %>
+<%= form_for(@room, url: room_path, method :post) do |f| %>
+
 
   <div class="field">
     <%= f.label :room_name ,"施設名" %> <br />
