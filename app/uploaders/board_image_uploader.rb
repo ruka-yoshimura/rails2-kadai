@@ -1,4 +1,4 @@
-class ImageUploader < CarrierWave::Uploader::Base
+class BoardImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -13,10 +13,20 @@ class ImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  def extension_whitelist # 拡張子の制限
+    %w[jpg jpeg gif png]
+  end
+
   #デフォルト画像の設定
  def default_url
-  "https://rails-02-sample.herokuapp.com/assets/common/default-avatar-7a6cbfd7993e89f24bfc888f4a035a83c6f1428b8bdc47eed9095f2799a40153.png"
+  "app/assets/images/default-avatar-7a6cbfd7993e89f24bfc888f4a035a83c6f1428b8bdc47eed9095f2799a40153.png"
  end
+
+ mount_uploader :board_image, BoardImageUploader
+ belongs_to :user
+
+ validates :title, presence: true, length: { maximum: 255 }
+ validates :body, presence: true, length: { maximum: 65_535 }
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
@@ -49,10 +59,4 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-  include CarrierWave::MiniMagick
-  process resize_to_fit: [400, 200]
-
-  def extension_allowlist
-    %w(jpg jpeg gif png)
-  end
 end

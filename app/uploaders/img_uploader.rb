@@ -13,6 +13,11 @@ class ImgUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  #デフォルト画像の設定
+ def default_url
+  "https://rails-02-sample.herokuapp.com/assets/common/default-avatar-7a6cbfd7993e89f24bfc888f4a035a83c6f1428b8bdc47eed9095f2799a40153.png"
+ end
+
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:
@@ -44,4 +49,10 @@ class ImgUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+  include CarrierWave::MiniMagick
+  process resize_to_fit: [400, 200]
+
+  def extension_whitelist # 拡張子の制限
+    %w[jpg jpeg gif png]
+  end
 end
