@@ -1,0 +1,17 @@
+<h1>登録済み一覧</h1>
+
+<h3>画像</h3>
+<%= @room.room_img %>
+
+<h3>施設名</h3>
+<%= @room.room_name %> 
+
+<h3>紹介文</h3>
+<%= @room.room_name %>
+
+<h3>料金</h3>
+<%= @room.fee %>
+
+<%= link_to "編集", edit_user_registration_path, class: 'post' %>
+
+<%= link_to "プロフィール", users_profile_path, class: 'post' %>

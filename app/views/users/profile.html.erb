@@ -1,0 +1,16 @@
+<h1>プロフィール</h1>
+
+
+<h3>アイコン画像</h3>
+<%# <%= @user.img.variant(resize: '500x500') %> 
+
+
+<h3>名前</h3>
+<%= @user.name %>
+
+<h3>自己紹介</h3>
+<%= @user.introduction %>
+
+<%= link_to "編集", users_profile_edit_path, class: 'post' %>
+
+<%= link_to "アカウント", users_account_path, class: 'post' %>

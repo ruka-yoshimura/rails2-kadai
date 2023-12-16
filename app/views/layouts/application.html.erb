@@ -11,6 +11,25 @@
   </head>
 
   <body>
+  <header>
+      <div class="container flex-between">
+        <div class="header-left">
+          <h1>サイトロゴ</h1>
+        </div>
+        <div class="header-left">
+        <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
+  <!-- ユーザーがログインしていた時の処理 -->
+  <h2><%= current_user.name %></h2>
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %> <!-- ログアウトをする -->
+  <%= link_to "アカウント", users_account_path, class: 'post' %>
+<% else %>
+  <!-- ユーザーがログインしていなかった時の処理 -->
+  <%= link_to "ログイン", new_user_session_path, class: 'post' %> <!-- ログイン画面に移行する -->
+  <%= link_to "新規登録", new_user_registration_path, class: 'post' %> <!-- 新規登録画面に移行する -->
+<% end %>
+        </div>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>

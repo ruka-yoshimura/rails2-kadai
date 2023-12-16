@@ -1,0 +1,36 @@
+<h2>新規登録</h2>
+
+<%= form_for(@room) do |f| %>
+<%# <%= form_with(@room, url: rooms_path(@room_name)) do |f| %>
+
+  <div class="field">
+    <%= f.label :room_name ,"施設名" %> <br />
+    <%= f.text_field :room_name, autofocus: true, autocomplete: "room_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :room_detail ,"施設詳細" %><br />
+    <%= f.text_field :room_detail, autocomplete: "room_detail" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fee ,"料金"%>
+    <%= f.text_field :fee, autocomplete: "fee" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address ,"住所"%><br />
+    <%= f.password_field :address, autocomplete: "address" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :room_img ,"施設画像" %>
+    <%= f.file_field :room_img, autocomplete: "room_img" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "保存" %>
+  </div>
+<% end %>
+
+
