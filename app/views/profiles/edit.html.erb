@@ -1,5 +1,5 @@
 
-<%= form_for(@user, url: profiles_path(@img, @name, @introduction)) do |f| %>
+<%= form_for(@user, url: profile_path(@img, @name, @introduction)) do |f| %>
 
   <div class="field">
   <%= image_tag @user.img.url%>
@@ -14,7 +14,7 @@
 
   <div class="field">
     <%= f.label :introduction ,"自己紹介" %>
-    <%= f.text_field :introduction, autocomplete: "introduction" %>
+    <%= f.text_area :introduction, autocomplete: "introduction" %>
   </div> 
 
   <div class="actions">

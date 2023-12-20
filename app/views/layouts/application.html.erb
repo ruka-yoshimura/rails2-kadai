@@ -19,6 +19,7 @@
         <div class="header-left">
         <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
   <!-- ユーザーがログインしていた時の処理 -->
+  <%# <%= image_tag @user.img.url%> %>
   <h2><%= current_user.name %></h2>
   <%= link_to "ログアウト", destroy_user_session_path, method: :delete %> <!-- ログアウトをする -->
   <%= link_to "アカウント", users_account_path, class: 'post' %>

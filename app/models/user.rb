@@ -7,4 +7,9 @@ class User < ApplicationRecord
 
          mount_uploader :img, ImgUploader
          has_one_attached :img
+         has_many :rooms
+        #  validates :user_id, {presence: true}
+         def rooms
+          return Room.where(user_id: self.id)
+        end
 end

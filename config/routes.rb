@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get "rooms/own" => "rooms#own"
+  # get "rooms/:id" => "rooms#show"
+  resources :rooms
+  resource :profile,only: %i[show edit update]
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
@@ -10,23 +14,22 @@ Rails.application.routes.draw do
     get '/users', to: redirect("/users/sign_up")
   end
   get "users/profile" => "users#profile"
-  get "users/profile/edit" => "users#edit"
-  get "users/profile/edit" => "profiles#edit"
-  get "users/profile/edit" => "users#update"
-  get "users/profile/edit" => "profiles#update"
   get "users/account" => "users#account"
   get "users/account" => "users#account"
   get "/users" => "users#edit"
   get "/users" => "users#update"
-  # get "rooms/index"
-  get "rooms/new" => "rooms#new"
-  get "rooms/new" => "rooms#create"
+  # get "/rooms" => "rooms#index"
+  # get "rooms/new" => "rooms#new"
+  # get "rooms/new" => "rooms#create"
+  # get "rooms/create" => "rooms#create"
+  # post "rooms", to: "rooms#create"
+  # post "rooms/new" => "rooms#new"
+  # get "rooms/own" => "rooms#own"
+  # get "rooms/own" => "rooms#create"
   # get "rooms/own" => "rooms#own"
   # get "/users" => "users#update"
   
   # resources :users
-  resources :rooms
-  resource :profiles,only: %i[show edit update]
     # sessions: "users/sessions",
     # registrations: "users/registrations"
   
