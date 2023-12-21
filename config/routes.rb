@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get "rooms/own" => "rooms#own"
   # get "rooms/:id" => "rooms#show"
   resources :rooms
+  get "search" => "rooms#search"
   resource :profile,only: %i[show edit update]
   devise_for :users, controllers: {
     registrations: 'users/registrations'

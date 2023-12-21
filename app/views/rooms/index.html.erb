@@ -1,5 +1,15 @@
 <h1>登録済み一覧</h1>
 
+
+<div class="search_form">
+    <%= search_form_for @q, url: search_path do |f| %>
+   <%# <%= f.search_field :area_cont, class: 'form-control', placeholder: '検索ワード' %> %>
+   <%= f.search_field :room_name_cont, class: 'form-control', placeholder: 'エリア名' %>
+   <%# <%= f.search_field :keyword_cont, class: 'form-control', placeholder: '検索ワード' %> %>
+   <%= f.submit '検索', class: 'btn btn-primary' %>
+    <% end %>
+</div>
+
 <table>
 <thead>
    <tr>
@@ -14,12 +24,12 @@
  <tbody>
    <% @rooms.each do |room| %>
      <tr>
-       <%# <td><%= image_tag @room.room_img.url</td>  %>
+       <td><%= image_tag room.room_img.url %></td>
        <td><%= room.room_name %></td>
        <td><%= room.room_detail %></td>
        <td><%= room.fee %></td>
        <td>
-         <%= link_to "参照", room %>
+         <%= link_to "詳細はこちら", room %>
        </td>
      </tr>
    <% end %>

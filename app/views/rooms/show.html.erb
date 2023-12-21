@@ -1,8 +1,7 @@
-
 <h1>登録済み一覧</h1>
 
 <h3>画像</h3>
-<%# <%= image_tag @room.img.url %> %>
+<%= image_tag @room.room_img.url %>
 
 <h3>施設名</h3>
 <%= @room.room_name %>
@@ -13,7 +12,12 @@
 <h3>料金</h3>
 <%= @room.fee %>
 
+<h3>住所</h3>
+<%= @room.address %>
+
 <% if @room.user_id == current_user.id %>
   <%= link_to("編集", "/rooms/#{@room.id}/edit") %>
   <%= link_to("削除", "/rooms/#{@room.id}/destroy", {method: "room"}) %>
 <% end %>
+
+<%= link_to "戻る", :back %>

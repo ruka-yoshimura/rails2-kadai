@@ -22,4 +22,12 @@ class ApplicationController < ActionController::Base
 #   @current_user = User.find_by(id: session[:user_id])
 # end
 
+  # before_action :search
+
+  # def search
+  #   @q = Item.ransack(params[:q])
+  #   @room = @q.result(distinct: true)
+  #   @result = params[:q]&.values&.reject(&:blank?)
+  # end
+
 end

@@ -14,16 +14,25 @@
  <tbody>
    <% @rooms.each do |room| %>
      <tr>
-       <%# <td><%= image_tag @room.room_img.url</td>  %>
-       <td><%= room.room_name %></td>
+       <td><%= image_tag room.room_img.url %></td>
+       <td><%= link_to room.room_name, room %></td>
        <td><%= room.room_detail %></td>
        <td><%= room.fee %></td>
+       <td><%= room.created_at.strftime('%Y/%m/%d')%></td>
        <td>
-         <%= link_to "参照", room %>
+         <%# <%= link_to("編集", :edit_room) %> %>
+         <%# <%= link_to "編集", edit_room_path, class: 'post' %> %>
+         <%# <%= link_to("削除", "/rooms/#{@room.id}/edit", {method: "room"}) %> %>
+       </td>
+       <td>
+         <%# <%= link_to("削除", "/rooms/#{@room.id}/destroy", {method: "room"}) %> %>
        </td>
      </tr>
    <% end %>
  </tbody>
 </table>
 
-<p><%= link_to "施設新規登録", :new_room %></p>
+<%# <% room.user_id %>
+  <%# <%= link_to("編集", "/rooms/#{@room.id}/edit") %> %>
+  <%# <%= link_to("削除", "/rooms/#{@room.id}/destroy", {method: "room"}) %> %>
+<%# <% end %> %> %>

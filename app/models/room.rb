@@ -5,5 +5,11 @@ class Room < ApplicationRecord
     #インスタンスメソッドないで、selfはインスタンス自身を表す
     return User.find_by(id: self.user_id)
   end
-  mount_uploader :img, ImgUploader
+
+  def self.search(search)
+    return Room.all unless search
+    Room.where('name LIKE(?)', "%#{search}%")
+  end
+
+  mount_uploader :room_img, ImgUploader
 end
