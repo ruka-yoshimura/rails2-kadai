@@ -20,19 +20,12 @@
        <td><%= room.fee %></td>
        <td><%= room.created_at.strftime('%Y/%m/%d')%></td>
        <td>
-         <%# <%= link_to("編集", :edit_room) %> %>
-         <%# <%= link_to "編集", edit_room_path, class: 'post' %> %>
-         <%# <%= link_to("削除", "/rooms/#{@room.id}/edit", {method: "room"}) %> %>
+         <%= link_to "編集", edit_room_path(room.id) %>
        </td>
        <td>
-         <%# <%= link_to("削除", "/rooms/#{@room.id}/destroy", {method: "room"}) %> %>
+         <%= link_to '削除', room_path(room.id), method: :delete %>
        </td>
      </tr>
    <% end %>
  </tbody>
 </table>
-
-<%# <% room.user_id %>
-  <%# <%= link_to("編集", "/rooms/#{@room.id}/edit") %> %>
-  <%# <%= link_to("削除", "/rooms/#{@room.id}/destroy", {method: "room"}) %> %>
-<%# <% end %> %> %>

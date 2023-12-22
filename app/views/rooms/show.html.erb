@@ -1,5 +1,13 @@
 <h1>登録済み一覧</h1>
 
+<div class="search_form">
+    <%= search_form_for @q, url: search_path do |f| %>
+   <%= f.search_field :address_cont, class: 'form-control', placeholder: 'エリア名を入力' %>
+   <%= f.search_field :room_name_or_room_detail_cont, class: 'form-control', placeholder: 'キーワード名を入力' %>
+   <%= f.submit '検索', class: 'btn btn-primary' %>
+    <% end %>
+</div>
+
 <h3>画像</h3>
 <%= image_tag @room.room_img.url %>
 
@@ -15,9 +23,11 @@
 <h3>住所</h3>
 <%= @room.address %>
 
+
 <% if @room.user_id == current_user.id %>
   <%= link_to("編集", "/rooms/#{@room.id}/edit") %>
-  <%= link_to("削除", "/rooms/#{@room.id}/destroy", {method: "room"}) %>
+  <%= link_to("削除", "/rooms/#{@room.id}", {method: "delete"}) %>
 <% end %>
+
 
 <%= link_to "戻る", :back %>

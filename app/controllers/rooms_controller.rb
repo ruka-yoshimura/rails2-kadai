@@ -23,10 +23,13 @@ class RoomsController < ApplicationController
     
     def show
       @room = Room.find(params[:id])
+      @q = Room.ransack(params[:q])
+      @search_rooms = @q.result
     end
     
     def edit
       @room = Room.find(params[:id])
+      @q = Room.ransack(params[:q])
     end
     
     def update
@@ -39,9 +42,14 @@ class RoomsController < ApplicationController
     end
     
     def destroy
-      # @room = Room.find(params[:id])
-      # @room.destroy
-      # redirect_to "rooms/own"
+      @q = Room.ransack(params[:q])
+      @room = Room.find(params[:id])
+      if @room.destroy
+        redirect_to rooms_path, notice: "アウトプットを削除しました"
+      else
+        flash.now[:danger] = "削除に失敗しました"
+        render :own
+      end
     end
     
     def own

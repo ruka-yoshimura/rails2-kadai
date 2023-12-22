@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   get "rooms/own" => "rooms#own"
   # get "rooms/:id" => "rooms#show"
+  delete  'rooms/:id'  => 'rooms#destroy'
   resources :rooms
+  # resources :rooms, only: [:create, :destroy]
+  # end
   get "search" => "rooms#search"
   resource :profile,only: %i[show edit update]
   devise_for :users, controllers: {
