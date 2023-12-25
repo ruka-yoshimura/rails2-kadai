@@ -6,6 +6,8 @@ class RoomsController < ApplicationController
     @users = User.all
     @q = Room.ransack(params[:q])
     @search_rooms = @q.result
+    # @reservations = Reservation.all
+    # @reservations = Reservation.where(user_id: current_user.id)
   end
   
   def new
@@ -14,17 +16,25 @@ class RoomsController < ApplicationController
   
   def create
     @room = Room.new(room_params)
-      if @room.save
-        redirect_to("/rooms/#{@room.id}")
-      else
-        render :new
-      end
+    if @room.save
+      redirect_to("/rooms/#{@room.id}")
+    else
+      render :new
     end
-    
-    def show
-      @room = Room.find(params[:id])
-      @q = Room.ransack(params[:q])
-      @search_rooms = @q.result
+  end
+  
+  def show
+    @room = Room.find(params[:id])
+    # @room = @reservation.room
+    @q = Room.ransack(params[:q])
+    @search_rooms = @q.result
+    # @room = @room_id.reservations.build
+    # @room = current_user.rooms.build
+    # @reservation = @room.id.reservations.build
+    # @room = Room.new(room_params)
+    @reservation = current_user.reservations.build
+    # @reservation =  Reservation.new
+    # @reservations =  @room.reservations
     end
     
     def edit
@@ -55,15 +65,13 @@ class RoomsController < ApplicationController
     def own
       @rooms = Room.where(user_id: current_user.id)
       @q = current_user.rooms.ransack(params[:q])
-	    # @rooms = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])
-	    # @rooms = @q.result(distinct: true).includes(:user).order(created_at: :desc).room(params[:room_params])
     end
 
     def search
       @q = Room.ransack(params[:q])
       @search_rooms = @q.result
     end
-
+    
     private
     def room_params
       params.require(:room).permit(:room_name, :room_detail, :fee, :address, :room_img, :user_id)

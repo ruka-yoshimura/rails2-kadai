@@ -8,8 +8,14 @@ class User < ApplicationRecord
          mount_uploader :img, ImgUploader
          has_one_attached :img
          has_many :rooms
+         has_many :reservations
         #  validates :user_id, {presence: true}
          def rooms
           return Room.where(user_id: self.id)
         end
+
+         def reservations
+          return Reservation.where(user_id: self.id)
+          return Reservation.where(room_id: self.id)
+         end
 end
