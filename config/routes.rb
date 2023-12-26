@@ -2,11 +2,11 @@ Rails.application.routes.draw do
   get "rooms/own" => "rooms#own"
   delete  'rooms/:id'  => 'rooms#destroy'
   resources :rooms
-  resources :reservations
-  get "reservations/confirm" => "reservations#confirm"
-  post "rooms/:id" => "rooms#show"
-
-  # get "reservations" => "reservations#show"
+  resources :reservations do
+    collection do
+    post 'confirm'
+    end
+  end
   # resources :rooms, only: [:create, :destroy]
   # end
   get "search" => "rooms#search"

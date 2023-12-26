@@ -19,8 +19,12 @@
        <td><%= reservation.start_date %></td>
        <%# <td><%= reservation.start_date.strftime('%Y/%m/%d') %></td> %>
        <%# <td><%= reservation.end_date.strftime('%Y/%m/%d') %></td> %>
+       <td><%= reservation.end_date %></td>
        <td><%= reservation.number_people %></td>
        <%# <td><%= reservation.created_at.strftime('%Y/%m/%d')%></td> %>
+       <td><%= reservation.user_id%></td>
+       <td><%= reservation.room_id%></td>
+       <td><%= l reservation.created_at%></td>
    <% end %>
        <% @rooms.each do |room| %>
        <td><%= image_tag room.room_img.url %></td>

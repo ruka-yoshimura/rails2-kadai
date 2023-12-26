@@ -1,26 +1,54 @@
-<h1>予約済み一覧</h1>
+<h1>予約内容の確認</h1>
 
-<table>
-<thead>
-   <tr>
-     <th>画像</th>
-     <th>施設名</th>
-     <th>紹介文</th>
-     <th>合計料金</th>
-     <th>チェックイン</th>
-     <th>チェックアウト</th>
-     <th>予約確定日時</th>
-   </tr>
- </thead>
 
- <tbody>
-   <% @reservations.each do |reservation| %>
-     <tr>
-       <td><%= reservation.start_date.strftime('%Y/%m/%d') %></td>
-       <td><%= reservation.end_date.strftime('%Y/%m/%d') %></td>
-       <td><%= reservation.number_people %></td>
-       <td><%= reservation.created_at.strftime('%Y/%m/%d')%></td>
-     </tr>
-   <% end %>
- </tbody>
-</table>
+       <h3>チェックイン</h3>
+       <%= @reservation.start_date %>
+       <%# <td><%= reservation.start_date.strftime('%Y/%m/%d') %></td> %>
+       <%# <td><%= reservation.end_date.strftime('%Y/%m/%d') %></td> %>
+       <h3>チェックアウト</h3>
+       <%= @reservation.end_date %>
+       <h3>日数</h3>
+       <%= @reservation.days.to_i %><span>日</span>
+       <h3>人数</h3>
+       <%= @reservation.number_people %><span>人</span>
+       <%# <td><%= reservation.created_at.strftime('%Y/%m/%d')%></td> %>
+       <h3>お支払い金額</h3>
+       <%= @reservation.price %>
+
+<%= form_with model: @reservation, local: true, url: reservations_path do |f| %>
+  <div class="field">
+    <%= f.hidden_field :start_date, autocomplete: "start_date" %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :end_date, autocomplete: "end_date" %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :days, autocomplete: "days" %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :number_people, autocomplete: "number_people" %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :price, autocomplete: "price" %>
+  </div>
+
+  <div class="field">
+  <%= f.hidden_field :user_id %>
+  </div>
+
+  <div class="field">
+  <%# <%= f.hidden_field :room_id, value: @room.id %> %>
+  <%= f.hidden_field :room_id %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit "予約する" %>
+     <%# <%= link_to("戻る", "/rooms/#{@room.id}") %> %>
+  </div>
+<% end %>
+
+<%= link_to "戻る", :back %>

@@ -23,7 +23,7 @@
 <h3>住所</h3>
 <%= @room.address %>
 
-<%= form_with model: @reservation do |f| %>
+<%= form_with model: @reservation, url: confirm_reservations_url(@reservation), local: true  do |f| %>
   <div class="field">
     <%= f.label :start_date ,"チェックイン" %> <br />
     <%= f.date_field :start_date, autocomplete: "start_date" %>
