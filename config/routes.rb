@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :rooms
   resources :reservations do
     collection do
-    post 'confirm'
+      post 'confirm'
+      patch 'confirm'
     end
   end
   # resources :rooms, only: [:create, :destroy]

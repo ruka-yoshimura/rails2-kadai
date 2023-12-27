@@ -3,9 +3,10 @@ class RoomsController < ApplicationController
 
   def index
     @rooms = Room.all
-    @users = User.all
+    # @users = User.all
     @q = Room.ransack(params[:q])
     @search_rooms = @q.result
+    @rooms_total = Room.all.count(:id)
     # @reservations = Reservation.all
     # @reservations = Reservation.where(user_id: current_user.id)
   end
@@ -74,7 +75,7 @@ class RoomsController < ApplicationController
     
     private
     def room_params
-      # params.require(:room).permit(:room_name, :room_detail, :fee, :address, :room_img, :user_id)
-      params.permit(:room_name, :room_detail, :fee, :address, :room_img, :user_id)
+      params.require(:room).permit(:room_name, :room_detail, :fee, :address, :room_img, :user_id)
+      # params.permit(:room_name, :room_detail, :fee, :address, :room_img, :user_id)
     end
 end

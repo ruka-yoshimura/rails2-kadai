@@ -4,37 +4,13 @@
        <h3>チェックイン</h3>
        <%= @reservation.start_date %>
        <%# <td><%= reservation.start_date.strftime('%Y/%m/%d') %></td> %>
-       <%# <td><%= reservation.end_date.strftime('%Y/%m/%d') %></td> %>
        <h3>日数</h3>
        <h3>チェックアウト</h3>
        <%= @reservation.end_date %>
+       <%# <td><%= reservation.end_date.strftime('%Y/%m/%d') %></td> %>
        <h3>人数</h3>
        <%= @reservation.number_people %>
        <%# <td><%= reservation.created_at.strftime('%Y/%m/%d')%></td> %>
        <h3>お支払い金額</h3>
        <%= @reservation.created_at%>
 
-<%= form_with model: @reservation do |f| %>
-  <div class="field">
-    <%= f.hidden_field :start_date, autocomplete: "start_date" %>
-  </div>
-
-  <div class="field">
-    <%= f.hidden_field :end_date, autocomplete: "end_date" %>
-  </div>
-
-  <div class="field">
-    <%= f.hidden_field :number_people, autocomplete: "number_people" %>
-  </div>
-
-  <%# <%= f.hidden_field :user_id %> %>
-  <%# <%= f.hidden_field :room_id, value: @room.id %> %>
-
-  <div class="actions">
-    <%= f.submit "予約する" %>
-    <%= f.submit "修正する", name: "back" %>
-     <%# <%= link_to("戻る", "/rooms/#{@room.id}") %> %>
-  </div>
-<% end %>
-
-<%= link_to "戻る", :back %>
