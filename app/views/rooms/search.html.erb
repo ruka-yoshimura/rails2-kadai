@@ -1,4 +1,14 @@
 
+<div class="search_form">
+    <%= search_form_for @q, url: search_path do |f| %>
+   <%= f.search_field :address_cont, class: 'form-control', placeholder: 'エリア名を入力' %>
+   <%= f.search_field :room_name_or_room_detail_cont, class: 'form-control', placeholder: 'キーワード名を入力' %>
+   <%= f.submit '検索', class: 'btn btn-primary' %>
+    <% end %>
+</div>
+
+<h3><%= @rooms_area_total%>件が見つかりました。</h3>
+
 <table>
 <thead>
    <tr>

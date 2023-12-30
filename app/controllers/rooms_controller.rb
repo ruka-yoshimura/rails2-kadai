@@ -3,12 +3,9 @@ class RoomsController < ApplicationController
 
   def index
     @rooms = Room.all
-    # @users = User.all
     @q = Room.ransack(params[:q])
     @search_rooms = @q.result
     @rooms_total = Room.all.count(:id)
-    # @reservations = Reservation.all
-    # @reservations = Reservation.where(user_id: current_user.id)
   end
   
   def new
@@ -17,6 +14,7 @@ class RoomsController < ApplicationController
   
   def create
     @room = Room.new(room_params)
+    @room.room.img = "app/assets/images/default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png"
     if @room.save
       redirect_to("/rooms/#{@room.id}")
     else
@@ -26,16 +24,9 @@ class RoomsController < ApplicationController
   
   def show
     @room = Room.find(params[:id])
-    # @room = @reservation.room
     @q = Room.ransack(params[:q])
     @search_rooms = @q.result
-    # @room = @room_id.reservations.build
-    # @room = current_user.rooms.build
-    # @reservation = @room.id.reservations.build
-    # @room = Room.new(room_params)
     @reservation = current_user.reservations.build
-    # @reservation =  Reservation.new
-    # @reservations =  @room.reservations
     end
     
     def edit
@@ -48,7 +39,7 @@ class RoomsController < ApplicationController
       if @room.update(room_params)
         redirect_to("/rooms/#{@room.id}")
       else
-        render :new
+        render :edit
       end
     end
     
@@ -56,7 +47,7 @@ class RoomsController < ApplicationController
       @q = Room.ransack(params[:q])
       @room = Room.find(params[:id])
       if @room.destroy
-        redirect_to rooms_path, notice: "アウトプットを削除しました"
+        redirect_to :rooms, notice: "アウトプットを削除しました"
       else
         flash.now[:danger] = "削除に失敗しました"
         render :own
@@ -71,11 +62,11 @@ class RoomsController < ApplicationController
     def search
       @q = Room.ransack(params[:q])
       @search_rooms = @q.result
+      @rooms_area_total = @q.result.count
     end
     
     private
     def room_params
       params.require(:room).permit(:room_name, :room_detail, :fee, :address, :room_img, :user_id)
-      # params.permit(:room_name, :room_detail, :fee, :address, :room_img, :user_id)
     end
 end

@@ -2,25 +2,17 @@
 
 
        <h3>チェックイン</h3>
-       <%= @reservation.start_date %>
-       <%# <td><%= reservation.start_date.strftime('%Y/%m/%d') %></td> %>
-       <%# <td><%= reservation.end_date.strftime('%Y/%m/%d') %></td> %>
+       <%= @reservation.start_date.strftime('%Y/%m/%d') %>
        <h3>チェックアウト</h3>
-       <%= @reservation.end_date %>
+       <%= @reservation.end_date.strftime('%Y/%m/%d') %>
        <h3>日数</h3>
        <%= @reservation.days.to_i %><span>日</span>
-       <%# <%= @reservation.number_of_date.to_i %> %>
        <h3>人数</h3>
        <%= @reservation.number_people %><span>人</span>
-       <%# <td><%= reservation.created_at.strftime('%Y/%m/%d')%></td> %>
        <h3>お支払い金額</h3>
        <%= @reservation.price.to_i %>
-       <%# <%= @price.to_i %> %>
-       <%# <%= @reservation.days.to_i * @room.fee.to_i * @reservation.number_people.to_i %> %>
-       <%# <%= @reservation.room.price.to_i %> %>
-       <%# <%= @reservation.price.to_i, => @price %> %>
 
-<%# <%= form_with model: @reservation, local: true, url: reservations_path do |f| %> %>
+
 <%= form_with model: @reservation, local: true do |f| %>
   <div class="field">
     <%= f.hidden_field :start_date, autocomplete: "start_date" %>
@@ -31,14 +23,7 @@
   </div>
 
   <div class="field">
-    <%# <%= f.hidden_field :days, autocomplete: "days" %> %>
-  </div>
-
-  <div class="field">
     <%= f.hidden_field :number_people, autocomplete: "number_people" %>
-  </div>
-  <div class="field">
-    <%= f.hidden_field :price, autocomplete: "price" %>
   </div>
 
   <div class="field">
@@ -49,14 +34,9 @@
   <%= f.hidden_field :room_id %>
   </div>
 
-  <div class="field">
-  <%# <%= f.hidden_field :fee %> %>
-  </div>
-
 
   <div class="actions">
-    <%= f.submit "予約する" %>
-     <%# <%= link_to("戻る", "/rooms/#{@room.id}") %> %>
+    <%= f.submit "予約を確定" %>
   </div>
 <% end %>
 

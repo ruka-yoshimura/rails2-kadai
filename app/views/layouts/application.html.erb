@@ -14,21 +14,50 @@
   <header>
       <div class="container flex-between">
         <div class="header-left">
-          <h1>サイトロゴ</h1>
+          <h1><a href = "/">Potepan Share</a></h1>
         </div>
-        <div class="header-left">
-        <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
-  <!-- ユーザーがログインしていた時の処理 -->
-  <%# <%= image_tag @user.img.url%> %>
-  <h2><%= current_user.name %></h2>
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %> <!-- ログアウトをする -->
-  <%= link_to "アカウント", users_account_path, class: 'post' %>
-  <%= link_to "登録済み一覧", rooms_own_path, class: 'post' %>
-  <%= link_to "予約済み一覧", reservations_path, class: 'post' %>
+
+
+        <div class="header-right">
+        <% if user_signed_in? %>
+
+        <div class= "header-img">
+         <%# <%= image_tag @user.img.url%> %>
+        </div>
+
+   <label for="menuOn">
+    <li class="menu-item drop-menu">
+    <h3><%= current_user.name %></h3>
+    <input id="menuOn" type="checkbox">
+ <nav class="nav-menu">
+  <ul class="menu-list">
+      <ul class="drop-menu-list">
+        <li class="drop-menu-item">
+    <%= link_to "施設の新規登録", new_room_path, class: 'post' %>
+        </li>
+        <li class="drop-menu-item">
+    <%= link_to "予約済み一覧", reservations_path, class: 'post' %>
+        </li>
+        <li class="drop-menu-item">
+    <%= link_to "登録済み一覧", rooms_own_path, class: 'post' %>
+        </li>
+        <li class="drop-menu-item">
+    <%= link_to "アカウント設定", users_account_path, class: 'post' %>
+        </li>
+        <li class="drop-menu-item">
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </label>
+
 <% else %>
-  <!-- ユーザーがログインしていなかった時の処理 -->
-  <%= link_to "ログイン", new_user_session_path, class: 'post' %> <!-- ログイン画面に移行する -->
-  <%= link_to "新規登録", new_user_registration_path, class: 'post' %> <!-- 新規登録画面に移行する -->
+        <li class="login-list">
+  <%= link_to "ログイン", new_user_session_path, class: 'post' %>
+  <%= link_to "新規登録", new_user_registration_path, class: 'post' %>
+        </li>
 <% end %>
         </div>
       </div>

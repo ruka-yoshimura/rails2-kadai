@@ -1,4 +1,4 @@
-<h2>新規登録</h2>
+<h2>施設情報の編集</h2>
 
 <%= form_with model: @room do |f| %>
   <div class="field">
@@ -12,7 +12,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :fee ,"料金"%>
+    <%= f.label :fee ,"料金"%><br />
     <%= f.text_field :fee, autocomplete: "fee" %>
   </div>
 
@@ -22,7 +22,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :room_img ,"施設画像" %>
+    <%= f.label :room_img ,"施設画像" %><br />
     <%= f.file_field :room_img, autocomplete: "room_img" %>
   </div>
 

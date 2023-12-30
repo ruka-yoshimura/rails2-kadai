@@ -1,20 +1,21 @@
 class ProfilesController < ApplicationController
-  before_action :set_user,only: %i[edit update]
+  # before_action :set_user,only: %i[edit update]
+
 
   def edit
     @user = current_user
   end
-
+  
   def update
-        @user = current_user
-        if @user.update(profile_params)
-            flash[:notice] = "更新しました"
-            redirect_to "/users/profile"
-        else
-            flash[:notice] = "更新できませんでした"
-            render "users/profile"
-        end
+    @user = current_user
+    # binding.pry
+    if @user.update(profile_params)
+      redirect_to "/users/profile"
+    else
+      render :edit
+    end
   end
+  
     
   private
   def set_user

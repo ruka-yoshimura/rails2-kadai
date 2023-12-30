@@ -2,8 +2,8 @@
 
 <%= form_with model: @room do |f| %>
   <div class="field">
-    <%= f.label :room_name ,"施設名" %> <br />
-    <%= f.text_field :room_name, autofocus: true, autocomplete: "room_name" %>
+    <%= f.label :room_name ,"施設名" %><br />
+    <%= f.text_field :room_name, autocomplete: "room_name" %>
   </div>
 
   <div class="field">
@@ -12,7 +12,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :fee ,"料金"%>
+    <%= f.label :fee ,"料金" %><br />
     <%= f.text_field :fee, autocomplete: "fee" %>
   </div>
 
@@ -22,7 +22,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :room_img ,"施設画像" %>
+    <%= f.label :room_img ,"施設画像" %><br />
     <%= f.file_field :room_img, autocomplete: "room_img" %>
   </div>
 

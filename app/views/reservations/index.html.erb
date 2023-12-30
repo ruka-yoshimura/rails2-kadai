@@ -19,25 +19,19 @@
        <td><%= image_tag reservation.room.room_img.url %></td>
        <td><%= link_to reservation.room.room_name , reservation.room %></td>
        <td><%= reservation.room.room_detail %></td>
-       <%# <td><%= @reservation.room.fee * @reservation.number_people * (@reservation.end_date - @reservation.start_date).to_i</td>  %> %>
-       <%# <td><%= reservation.number_people * reservation.room.fee * (reservation.end_date - reservation.start_date).to_i %></td> %>
-       <%# <td><%=reservation.number_people * (reservation.end_date - reservation.start_date).to_i %></td> %> %>
-       <%# <td><%= @price.to_i %></td> %>
        <td><%= reservation.price.to_i %></td> 
-       <td><%= reservation.start_date %></td>
-       <%# <td><%= reservation.start_date.strftime('%Y/%m/%d') %></td> %>
-       <td><%= reservation.end_date %></td>
-       <%# <td><%= reservation.end_date.strftime('%Y/%m/%d') %></td> %>
-       <td><%= reservation.updated_at%></td>
+       <td><%= reservation.start_date.strftime('%Y/%m/%d') %></td>
+       <td><%= reservation.end_date.strftime('%Y/%m/%d') %></td>
+       <td><%= reservation.updated_at.strftime('%Y/%m/%d %H:%M') %></td>
        <td>
          <%= link_to "編集", edit_reservation_path(reservation.id) %>
-         <%# <%= link_to "編集", edit_reservation_path %> %>
        </td>
        <td>
-         <%# <%= link_to '削除', room_path(room.id), method: :delete %> %>
+         <%= link_to '削除', reservation_path(reservation.id), method: :delete %>
        </td>
      </tr>
    <% end %>
  </tbody>
 </table>
+
 

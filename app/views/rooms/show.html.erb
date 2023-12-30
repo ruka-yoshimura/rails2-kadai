@@ -24,7 +24,7 @@
 <%= @room.address %>
 
 <%= form_with model: @reservation, url: confirm_reservations_url(@reservation), local: true  do |f| %>
-<%# <%= form_with model: Reservation.new, url: confirm_reservations_url(@reservation), local: true  do |f| %> %>
+
   <div class="field">
     <%= f.label :start_date ,"チェックイン" %> <br />
     <%= f.date_field :start_date, autocomplete: "start_date" %>
@@ -36,25 +36,21 @@
   </div>
 
   <div class="field">
-    <%= f.label :number_people ,"人数"%>
+    <%= f.label :number_people ,"人数"%><br />
     <%= f.text_field :number_people, autocomplete: "number_people" %>
   </div>
 
   <%= f.hidden_field :user_id %>
   <%= f.hidden_field :room_id, value: @room.id %>
-  <%# <%= f.hidden_field :price %> %>
-  <%# <%= f.hidden_field :fee, value: @room.fee %> %>
 
   <div class="actions">
     <%= f.submit "予約する" %>
-    <%# <%= link_to "予約する", reservations_path, class: 'post' %> %>
   </div>
 <% end %>
 
 
 <% if @room.user_id == current_user.id %>
   <%= link_to("編集", "/rooms/#{@room.id}/edit") %>
-  <%= link_to("削除", "/rooms/#{@room.id}", {method: "delete"}) %>
 <% end %>
 
 
