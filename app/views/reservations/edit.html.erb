@@ -2,8 +2,7 @@
 
 <h3>再予約する</h3>
 
-<%= form_with model: @reservation, url: confirm_reservations_url(@reservation), local: true  do |f| %>
-<%# <%= form_with model: @reservation, url: edit_confirm_reservation_url(@reservation), local: true  do |f| %> %>
+<%= form_with model: @reservation, url: edit_confirm_reservation_url(@reservation), local: true  do |f| %>
 
   <div class="field">
     <%= f.label :start_date ,"チェックイン" %> <br />
@@ -22,8 +21,11 @@
 
   <%= f.hidden_field :user_id %>
   <%= f.hidden_field :room_id, value: @room.id %>
+  <%= f.hidden_field :fee, value: @room.fee %>
 
   <div class="actions">
     <%= f.submit "再予約する" %>
   </div>
 <% end %>
+
+<%= link_to "戻る", :back %>

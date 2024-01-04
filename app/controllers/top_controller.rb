@@ -6,3 +6,4 @@ class TopController < ApplicationController
     @rooms_total = Room.all.count(:id)
   end
 end
+

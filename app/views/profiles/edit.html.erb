@@ -1,8 +1,11 @@
 
+
+<h1>プロフィール</h1>
+
 <%= form_for(@user, url: profile_path(@img, @name, @introduction)) do |f| %>
 
+  <%= image_tag @user.img.url,size: '80x80'%>
   <div class="field">
-  <%= image_tag @user.img.url%>
     <%= f.label :img ,"アイコン画像" %>
     <%= f.file_field :img, autocomplete: "img" %>
   </div>
@@ -15,7 +18,7 @@
   <div class="field">
     <%= f.label :introduction ,"自己紹介" %>
     <%= f.text_area :introduction, autocomplete: "introduction" %>
-  </div> 
+  </div>
 
   <div class="actions">
     <%= f.submit "Update" %>

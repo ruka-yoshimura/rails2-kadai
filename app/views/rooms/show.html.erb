@@ -9,7 +9,7 @@
 </div>
 
 <h3>画像</h3>
-<%= image_tag @room.room_img.url %>
+<%= image_tag @room.room_img.url, size: '350x200' %>
 
 <h3>施設名</h3>
 <%= @room.room_name %>
@@ -22,6 +22,7 @@
 
 <h3>住所</h3>
 <%= @room.address %>
+
 
 <%= form_with model: @reservation, url: confirm_reservations_url(@reservation), local: true  do |f| %>
 
@@ -42,6 +43,7 @@
 
   <%= f.hidden_field :user_id %>
   <%= f.hidden_field :room_id, value: @room.id %>
+  <%= f.hidden_field :fee, value: @room.fee %>
 
   <div class="actions">
     <%= f.submit "予約する" %>

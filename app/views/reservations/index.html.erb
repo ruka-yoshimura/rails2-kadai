@@ -16,15 +16,15 @@
  <tbody>
    <% @reservations.each do |reservation| %>
      <tr>
-       <td><%= image_tag reservation.room.room_img.url %></td>
+       <td><%= image_tag reservation.room.room_img.url, size: '150x100' %></td>
        <td><%= link_to reservation.room.room_name , reservation.room %></td>
        <td><%= reservation.room.room_detail %></td>
-       <td><%= reservation.price.to_i %></td> 
+       <td><%= reservation.price  %></td>
        <td><%= reservation.start_date.strftime('%Y/%m/%d') %></td>
        <td><%= reservation.end_date.strftime('%Y/%m/%d') %></td>
        <td><%= reservation.updated_at.strftime('%Y/%m/%d %H:%M') %></td>
        <td>
-         <%= link_to "編集", edit_reservation_path(reservation.id) %>
+         <%= link_to "再予約", edit_reservation_path(reservation.id) %>
        </td>
        <td>
          <%= link_to '削除', reservation_path(reservation.id), method: :delete %>

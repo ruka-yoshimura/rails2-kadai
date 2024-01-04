@@ -13,20 +13,9 @@ class BoardImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  def extension_whitelist # 拡張子の制限
-    %w[jpg jpeg gif png]
-  end
-
-  #デフォルト画像の設定
  def default_url
-  # "app/assets/images/default-avatar-7a6cbfd7993e89f24bfc888f4a035a83c6f1428b8bdc47eed9095f2799a40153.png"
+  "default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png"
  end
-
- mount_uploader :board_image, BoardImageUploader
- belongs_to :user
-
- validates :title, presence: true, length: { maximum: 255 }
- validates :body, presence: true, length: { maximum: 65_535 }
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
@@ -50,9 +39,9 @@ class BoardImageUploader < CarrierWave::Uploader::Base
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  # def extension_whitelist
-  #   %w(jpg jpeg gif png)
-  # end
+  def extension_whitelist
+    %w(jpg jpeg gif png)
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.

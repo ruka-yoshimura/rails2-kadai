@@ -22,12 +22,12 @@
         <% if user_signed_in? %>
 
         <div class= "header-img">
-         <%# <%= image_tag @user.img.url%> %>
+         <%= image_tag current_user.img.url, size: '50x50' %>
         </div>
 
    <label for="menuOn">
     <li class="menu-item drop-menu">
-    <h3><%= current_user.name %></h3>
+    <h3><%= current_user.name %> ∨</h3>
     <input id="menuOn" type="checkbox">
  <nav class="nav-menu">
   <ul class="menu-list">

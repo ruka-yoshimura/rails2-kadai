@@ -6,14 +6,16 @@
        <h3>チェックアウト</h3>
        <%= @reservation.end_date.strftime('%Y/%m/%d') %>
        <h3>日数</h3>
-       <%= @reservation.days.to_i %><span>日</span>
+       <%= @reservation.days %><span>日</span>
        <h3>人数</h3>
        <%= @reservation.number_people %><span>人</span>
        <h3>お支払い金額</h3>
-       <%= @reservation.price.to_i %>
+       <%= @reservation.price %>
 
 
 <%= form_with model: @reservation, local: true do |f| %>
+
+
   <div class="field">
     <%= f.hidden_field :start_date, autocomplete: "start_date" %>
   </div>
@@ -34,6 +36,10 @@
   <%= f.hidden_field :room_id %>
   </div>
 
+  <div class="field">
+    <%= f.hidden_field :fee %>
+  </div>
+
 
   <div class="actions">
     <%= f.submit "予約を確定" %>
@@ -41,3 +47,4 @@
 <% end %>
 
 <%= link_to "戻る", :back %>
+
