@@ -8,11 +8,11 @@ Rails.application.routes.draw do
       patch 'edit_confirm'
     end
   end
-
+  
   get "rooms/own" => "rooms#own"
   resources :rooms
   get "/search" => "rooms#search"
-
+  
   devise_for :users
   
   devise_scope :user do

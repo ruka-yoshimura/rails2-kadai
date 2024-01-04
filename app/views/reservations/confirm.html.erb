@@ -14,7 +14,6 @@
        
 
  <%= form_with model: @reservation, local: true do |f| %>
- <%= render "layouts/error", obj: @reservation %>
 
   <div class="field">
     <%= f.hidden_field :start_date, autocomplete: "start_date" %>
@@ -47,4 +46,5 @@
   </div>
 <% end %>
 
-<%= link_to "戻る", :back %>
+
+<%= link_to("戻る", "/rooms/#{@room.id}") %>

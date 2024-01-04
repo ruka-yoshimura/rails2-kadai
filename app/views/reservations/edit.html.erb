@@ -3,6 +3,7 @@
 <h3>再予約する</h3>
 
 <%= form_with model: @reservation, url: edit_confirm_reservation_url(@reservation), local: true  do |f| %>
+<%= render "layouts/error", obj: @reservation %>
 
   <div class="field">
     <%= f.label :start_date ,"チェックイン" %> <br />

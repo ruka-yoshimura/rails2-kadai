@@ -3,6 +3,7 @@
 <h1>プロフィール</h1>
 
 <%= form_for(@user, url: profile_path(@img, @name, @introduction)) do |f| %>
+<%= render "layouts/error", obj: @user %>
 
   <%= image_tag @user.img.url,size: '80x80'%>
   <div class="field">

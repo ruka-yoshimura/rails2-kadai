@@ -1,9 +1,11 @@
 <h2>施設情報の編集</h2>
 
 <%= form_with model: @room do |f| %>
+<%= render "layouts/error", obj: @room %>
+
   <div class="field">
     <%= f.label :room_name ,"施設名" %> <br />
-    <%= f.text_field :room_name, autofocus: true, autocomplete: "room_name" %>
+    <%= f.text_field :room_name, autocomplete: "room_name" %>
   </div>
 
   <div class="field">

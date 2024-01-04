@@ -1,6 +1,8 @@
 <h2>新規登録</h2>
 
 <%= form_with model: @room do |f| %>
+<%= render "layouts/error", obj: @room %>
+
   <div class="field">
     <%= f.label :room_name ,"施設名" %><br />
     <%= f.text_field :room_name, autocomplete: "room_name" %>

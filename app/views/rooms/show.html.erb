@@ -23,8 +23,8 @@
 <h3>住所</h3>
 <%= @room.address %>
 
-
 <%= form_with model: @reservation, url: confirm_reservations_url(@reservation), local: true  do |f| %>
+<%= render "layouts/error", obj: @reservation %>
 
   <div class="field">
     <%= f.label :start_date ,"チェックイン" %> <br />
