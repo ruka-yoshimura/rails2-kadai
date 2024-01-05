@@ -16,6 +16,7 @@ class ReservationsController < ApplicationController
     if @reservation.save
       redirect_to :reservations
     else
+      @reservation = Reservation.new(reservation_params)
       render :confirm
     end
   end
@@ -38,6 +39,7 @@ class ReservationsController < ApplicationController
     if @reservation.update(reservation_params)
       redirect_to :reservations
     else
+      @reservation = Reservation.new(reservation_params)
       render :edit
     end
   end

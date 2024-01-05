@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   root 'top#index'
+
   resources :reservations do
     collection do
       post 'confirm'
+      # get 'confirm'
     end
     member do
       patch 'edit_confirm'
+      # get 'edit_confirm'
     end
   end
   
@@ -18,7 +21,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/users', to: redirect("/users/sign_up")
   end
-  
+
   get "users/account" => "users#account"
   get "users/profile" => "users#profile"
   resource :profile,only: %i[edit update]
