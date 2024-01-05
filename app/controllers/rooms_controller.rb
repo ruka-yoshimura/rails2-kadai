@@ -1,0 +1,71 @@
+class RoomsController < ApplicationController
+  
+
+  def index
+    @rooms = Room.all
+    @q = Room.ransack(params[:q])
+    @search_rooms = @q.result
+    @rooms_all = Room.all.count(:id)
+  end
+  
+  def new
+    @room = current_user.rooms.build
+  end
+  
+  def create
+    @room = Room.new(room_params)
+    if @room.save
+      redirect_to("/rooms/#{@room.id}")
+    else
+      render :new
+    end
+  end
+  
+  def show
+    @room = Room.find(params[:id])
+    @q = Room.ransack(params[:q])
+    @search_rooms = @q.result
+    @reservation = current_user.reservations.build
+  end
+    
+    def edit
+      @room = Room.find(params[:id])
+      @q = Room.ransack(params[:q])
+    end
+    
+    def update
+      @room = Room.find(params[:id])
+      if @room.update(room_params)
+        redirect_to("/rooms/#{@room.id}")
+      else
+        render :edit
+      end
+    end
+    
+    def destroy
+      @q = Room.ransack(params[:q])
+      @room = Room.find(params[:id])
+      if @room.destroy
+        redirect_to :rooms
+      else
+        render :own
+      end
+    end
+    
+    def own
+      @rooms = Room.where(user_id: current_user.id)
+      @q = current_user.rooms.ransack(params[:q])
+    end
+
+    def search
+      @q = Room.ransack(params[:q])
+      @search_rooms = @q.result
+      @rooms_search_total = @q.result.count
+    end
+    
+    private
+    def room_params
+      params.require(:room).permit(:room_name, :room_detail, :fee, :address, :room_img, :user_id)
+    end
+end
+

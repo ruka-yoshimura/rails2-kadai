@@ -1,0 +1,32 @@
+
+
+<h3>再予約する</h3>
+
+<%= form_with model: @reservation, url: edit_confirm_reservation_url(@reservation), local: true  do |f| %>
+<%= render "layouts/error", obj: @reservation %>
+
+  <div class="field">
+    <%= f.label :start_date ,"チェックイン" %> <br />
+    <%= f.date_field :start_date, autocomplete: "start_date" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_date ,"チェックアウト" %><br />
+    <%= f.date_field :end_date, autocomplete: "end_date" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :number_people ,"人数"%><br />
+    <%= f.text_field :number_people, autocomplete: "number_people" %>
+  </div>
+
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :room_id, value: @room.id %>
+  <%= f.hidden_field :fee, value: @room.fee %>
+
+  <div class="actions">
+    <%= f.submit "再予約する" %>
+  </div>
+<% end %>
+
+<%= link_to "戻る", :back %>

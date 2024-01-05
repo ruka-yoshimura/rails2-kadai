@@ -1,0 +1,50 @@
+<h1>予約内容の確認</h1>
+
+
+       <h3>チェックイン</h3>
+       <%= @reservation.start_date.strftime('%Y/%m/%d') %>
+       <h3>チェックアウト</h3>
+       <%= @reservation.end_date.strftime('%Y/%m/%d') %>
+       <h3>日数</h3>
+       <%= @reservation.days %><span>日</span>
+       <h3>人数</h3>
+       <%= @reservation.number_people %><span>人</span>
+       <h3>お支払い金額</h3>
+       <%= @reservation.price %>
+
+
+<%= form_with model: @reservation, local: true do |f| %>
+
+
+  <div class="field">
+    <%= f.hidden_field :start_date, autocomplete: "start_date" %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :end_date, autocomplete: "end_date" %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :number_people, autocomplete: "number_people" %>
+  </div>
+
+  <div class="field">
+  <%= f.hidden_field :user_id %>
+  </div>
+
+  <div class="field">
+  <%= f.hidden_field :room_id %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :fee %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit "予約を確定" %>
+  </div>
+<% end %>
+
+<%= link_to("戻る", "/reservations/#{@reservation.id}/edit") %>
+

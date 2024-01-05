@@ -1,3 +1,28 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root 'top#index'
+
+  resources :reservations do
+    collection do
+      post 'confirm'
+      # get 'confirm'
+    end
+    member do
+      patch 'edit_confirm'
+      # get 'edit_confirm'
+    end
+  end
+  
+  get "rooms/own" => "rooms#own"
+  resources :rooms
+  get "/search" => "rooms#search"
+  
+  devise_for :users
+  
+  devise_scope :user do
+    get '/users', to: redirect("/users/sign_up")
+  end
+
+  get "users/account" => "users#account"
+  get "users/profile" => "users#profile"
+  resource :profile,only: %i[edit update]
 end

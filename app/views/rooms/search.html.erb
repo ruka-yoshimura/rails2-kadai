@@ -1,0 +1,38 @@
+
+<div class="search_form">
+    <%= search_form_for @q, url: search_path do |f| %>
+   <%= f.search_field :address_cont, class: 'form-control', placeholder: 'エリア名を入力' %>
+   <%= f.search_field :room_name_or_room_detail_cont, class: 'form-control', placeholder: 'キーワード名を入力' %>
+   <%= f.submit '検索', class: 'btn btn-primary' %>
+    <% end %>
+</div>
+
+<h3><%= @rooms_search_total %>件が見つかりました。</h3>
+
+<table>
+<thead>
+   <tr>
+     <th>画像</th>
+     <th>施設名</th>
+     <th>紹介文</th>
+     <th>料金</th>
+     <th>住所</th>
+   </tr>
+ </thead>
+ 
+ <tbody>
+   <% @search_rooms.each do |room| %>
+     <tr>
+       <td><%= image_tag room.room_img.url, size: '350x200' %></td>
+       <td><%= room.room_name %></td>
+       <td><%= room.room_detail %></td>
+       <td><%= room.fee %></td>
+       <td><%= room.address %></td>
+       <td>
+         <%= link_to "詳細はこちら", room %>
+       </td>
+     </tr>
+   <% end %>
+ </tbody>
+</table>
+
